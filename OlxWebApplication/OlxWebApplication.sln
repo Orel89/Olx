@@ -1,0 +1,56 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33205.214
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OlxWebApplication", "OlxWebApplication\OlxWebApplication.csproj", "{BE0B9653-1529-49A6-A701-DA66BF61487C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{E1919E3D-A12B-47F5-9E3B-F81EEAB8AFB9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OlxCore", "OlxCore\OlxCore.csproj", "{9E715A63-5BFA-43D5-917B-D729C6051599}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OlxData", "OlxData\OlxData.csproj", "{F264B3B9-1EE7-42E5-8330-50F9FC1BDEA4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OlxWebAPI", "OlxWebAPI\OlxWebAPI.csproj", "{0BECE5E6-C2B3-4F75-8C02-17C6C55E70D6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{462C9C24-EBB6-403C-915E-F18588CB255A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{BA70CFB9-76EB-4712-AFC1-EA4903E52574}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BE0B9653-1529-49A6-A701-DA66BF61487C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BE0B9653-1529-49A6-A701-DA66BF61487C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BE0B9653-1529-49A6-A701-DA66BF61487C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BE0B9653-1529-49A6-A701-DA66BF61487C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9E715A63-5BFA-43D5-917B-D729C6051599}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9E715A63-5BFA-43D5-917B-D729C6051599}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9E715A63-5BFA-43D5-917B-D729C6051599}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9E715A63-5BFA-43D5-917B-D729C6051599}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F264B3B9-1EE7-42E5-8330-50F9FC1BDEA4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F264B3B9-1EE7-42E5-8330-50F9FC1BDEA4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F264B3B9-1EE7-42E5-8330-50F9FC1BDEA4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F264B3B9-1EE7-42E5-8330-50F9FC1BDEA4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0BECE5E6-C2B3-4F75-8C02-17C6C55E70D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0BECE5E6-C2B3-4F75-8C02-17C6C55E70D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0BECE5E6-C2B3-4F75-8C02-17C6C55E70D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0BECE5E6-C2B3-4F75-8C02-17C6C55E70D6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{BE0B9653-1529-49A6-A701-DA66BF61487C} = {E1919E3D-A12B-47F5-9E3B-F81EEAB8AFB9}
+		{9E715A63-5BFA-43D5-917B-D729C6051599} = {E1919E3D-A12B-47F5-9E3B-F81EEAB8AFB9}
+		{F264B3B9-1EE7-42E5-8330-50F9FC1BDEA4} = {E1919E3D-A12B-47F5-9E3B-F81EEAB8AFB9}
+		{0BECE5E6-C2B3-4F75-8C02-17C6C55E70D6} = {E1919E3D-A12B-47F5-9E3B-F81EEAB8AFB9}
+		{462C9C24-EBB6-403C-915E-F18588CB255A} = {E1919E3D-A12B-47F5-9E3B-F81EEAB8AFB9}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {FC642E73-88F9-40B6-B40C-87F59732CCDB}
+	EndGlobalSection
+EndGlobal
