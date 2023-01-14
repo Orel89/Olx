@@ -1,1 +1,2 @@
 # Olx
+I plan to create a replica of olx application.In which you can create your own ads, as well as their advertising. Registration will be carried out by the usual email, as well as through social networks or with the help of Google account authentication. I also want to implement the possibility of setting the likes and subsequently displaying marked announcements on a separate page for a particular user
