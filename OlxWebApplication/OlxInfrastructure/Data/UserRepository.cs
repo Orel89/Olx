@@ -11,7 +11,7 @@ namespace OlxInfrastructure.Data
         {
         }
 
-        public override async Task<IEnumerable<User>> All()
+        public override async Task<IEnumerable<User>> AllAsync()
         {
             try
             {
@@ -19,11 +19,11 @@ namespace OlxInfrastructure.Data
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "{Repo} All function error", typeof(UserRepository));
+                _logger.LogError(ex, "{Repo} AllAsync function error", typeof(UserRepository));
                 return new List<User>();
             }
         }
-        public override async Task<bool> Upsert(User entity)
+        public override async Task<bool> UpdateAsync(User entity)
         {
             try
             {
@@ -31,7 +31,7 @@ namespace OlxInfrastructure.Data
                                                     .FirstOrDefaultAsync();
 
                 if (existingUser == null)
-                    return await Add(entity);
+                    return await AddAsync(entity);
 
                 existingUser.FirstName = entity.FirstName;
                 existingUser.LastName = entity.LastName;
@@ -47,7 +47,7 @@ namespace OlxInfrastructure.Data
             }
         }
 
-        public override async Task<bool> Delete(Guid id)
+        public override async Task<bool> DeleteAsync(Guid id)
         {
             try
             {

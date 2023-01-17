@@ -19,33 +19,37 @@ namespace OlxInfrastructure.Data
 
         }
 
-        public virtual Task<IEnumerable<T>> All()
+        public virtual Task<IEnumerable<T>> AllAsync()
         {
             throw new NotImplementedException();
         }
 
-        public virtual async Task<T> GetById(Guid id)
+        public virtual async Task<T> GetByIdAsync(Guid id)
         {
             return await dbSet.FindAsync(id);
         }
 
-        public virtual  async Task<bool> Add(T entity)
+        public virtual async Task<bool> AddAsync(T entity)
         {
             await dbSet.AddAsync(entity);
             return true;
         }
 
-        public virtual  async Task<bool> Delete(Guid id)
+        public virtual async Task<bool> DeleteAsync(Guid id)
         {
             throw new NotImplementedException();
         }
 
-        public virtual Task<bool> Upsert(T entity)
+        public virtual Task<bool> UpdateAsync(T entity)
         {
             throw new NotImplementedException();
         }
 
-        public virtual async Task<IEnumerable<T>> Find(Expression<Func<T, bool>> predicate)
+        public virtual Task<bool> InsertAsync(T entity)
+        {
+            throw new NotImplementedException();
+        }
+        public virtual async Task<IEnumerable<T>> FindAsync(Expression<Func<T, bool>> predicate)
         {
             return await dbSet.Where(predicate).ToListAsync();
         }

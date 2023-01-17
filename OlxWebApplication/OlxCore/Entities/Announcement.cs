@@ -7,10 +7,7 @@ using System.Threading.Tasks;
 
 namespace OlxCore.Entities
 {
-    public class Announcement : IBaseEntity
+    public class Announcement : EntityBase
     {
-        public Guid Id { get; set ;}
-
-
     }
 }

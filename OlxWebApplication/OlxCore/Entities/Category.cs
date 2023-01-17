@@ -7,9 +7,8 @@ using System.Threading.Tasks;
 
 namespace OlxCore.Entities
 {
-    public class Category : IBaseEntity
+    public class Category : EntityBase
     {
-        public Guid Id { get; set; }
         public string Name { get; set; } = null!;
     }
 }

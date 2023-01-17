@@ -1,6 +1,6 @@
 ﻿namespace OlxCore.Interfaces
 {
-    internal interface IBaseEntity
+    public class EntityBase
     {
         public Guid Id { get; set; }
     }

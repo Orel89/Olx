@@ -4,7 +4,7 @@ using OlxCore.Interfaces.Repository;
 
 namespace OlxInfrastructure.Data
 {
-    public class UnitOfWork : IUnitOfWork, IDisposable
+    public class UnitOfWork : IUnitOfWork
     {
         private readonly ApplicationDbContext _context;
         private readonly ILogger _logger;
@@ -18,11 +18,48 @@ namespace OlxInfrastructure.Data
 
             User = new UserRepository(context, _logger);
         }
-
-        public async Task CompleteAsync()
+        public async Task<bool> SaveChangesAsync()
         {
-            await _context.SaveChangesAsync();
+            bool returnValue = true;
+            using (var dbContextTransaction = _context.Database.BeginTransaction())
+            {
+                try
+                {
+                    await _context.SaveChangesAsync();
+                    await dbContextTransaction.CommitAsync();
+                }
+                catch (Exception ex)
+                {
+                    _logger.LogError(ex, "{UnitOfWork SaveChangesAsync function error", typeof(UnitOfWork));
+                    returnValue = false;
+                    await dbContextTransaction.RollbackAsync();
+                }
+            }
+
+            return returnValue;
         }
+
+        public bool SaveChanges()
+        {
+            bool returnValue = true;
+            using (var dbContextTransaction = _context.Database.BeginTransaction())
+            {
+                try
+                {
+                    _context.SaveChanges();
+                    dbContextTransaction.Commit();
+                }
+                catch (Exception ex)
+                {
+                    _logger.LogError(ex, "{UnitOfWork SaveChangesAsync function error", typeof(UnitOfWork));
+                    returnValue = false;
+                    dbContextTransaction.Rollback();
+                }
+            }
+
+            return returnValue;
+        }
+
         public void Dispose()
         {
             _context.Dispose();

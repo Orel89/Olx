@@ -2,11 +2,12 @@
 
 namespace OlxCore.Interfaces.Configuration
 {
-    public interface IUnitOfWork
+    public interface IUnitOfWork : IDisposable
     {
         IUserRepository User { get; }
-        Task CompleteAsync();
 
-        void Dispose();
+        Task<bool> SaveChangesAsync();
+
+        bool SaveChanges();
     }
 }
