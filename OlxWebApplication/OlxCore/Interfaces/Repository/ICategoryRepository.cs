@@ -2,7 +2,7 @@
 
 namespace OlxCore.Interfaces.Repository
 {
-    public interface IUserRepository: IGenericRepository<User>
+    public interface ICategoryRepository: IGenericRepository<Category>
     {
 
     }

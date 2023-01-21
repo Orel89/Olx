@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
+﻿
+using Microsoft.Extensions.Logging;
 using OlxCore.Interfaces.Configuration;
 using OlxCore.Interfaces.Repository;
 
@@ -9,14 +10,14 @@ namespace OlxInfrastructure.Data
         private readonly ApplicationDbContext _context;
         private readonly ILogger _logger;
 
-        public IUserRepository User { get; private set; }
+        public ICategoryRepository CategoryRepository { get; private set; }
 
         public UnitOfWork(ApplicationDbContext context, ILoggerFactory loggerFactory)
         {
             _context = context;
             _logger = loggerFactory.CreateLogger("logs");
 
-            User = new UserRepository(context, _logger);
+            CategoryRepository = new CategoryRepository(context, _logger);
         }
         public async Task<bool> SaveChangesAsync()
         {

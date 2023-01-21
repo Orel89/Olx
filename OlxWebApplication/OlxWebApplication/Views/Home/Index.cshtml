@@ -1,8 +1,35 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="~/css/index.css">
+    <title>OLX</title>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="header__burger">
+                @if (ViewBag.Account == null)
+                {
+                    <div class="header__text"><a asp-action="Registration" asp-controller="Auth">Registration</a></div>
+                    <div class="header__text"><a asp-action="Registration" asp-controller="Home">HomeRegistration</a></div>
+                    <div class="header__text"><a asp-action="Login" asp-controller="Auth">Login</a></div>
+                }
+                else
+                {
+                     <a asp-controller="Auth" asp-area="" asp-action="Login">
+                        <div class="header__avatar">
+                            <img src="@Url.Content("~/images/avatar.png")" />
+                        </div>
+                     </a>
+                }
+            </div>
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+        </div>
+    </div>
+
+
+</body>
+</html>

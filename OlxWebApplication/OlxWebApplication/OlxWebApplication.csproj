@@ -7,11 +7,27 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="wwwroot\images\avatar.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="wwwroot\images\avatar.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="12.0.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.2" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.2">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.11" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\OlxInfrastructure\OlxInfrastructure.csproj" />
+    <ProjectReference Include="..\OlxShared\OlxShared.csproj" />
+    <ProjectReference Include="..\OlxWebAPI\OlxWebAPI.csproj" />
   </ItemGroup>
 
 </Project>

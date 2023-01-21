@@ -5,13 +5,13 @@ using OlxCore.Interfaces.Repository;
 
 namespace OlxInfrastructure.Data
 {
-    public class UserRepository : GenericRepository<User>, IUserRepository
+    public class CategoryRepository : GenericRepository<Category>, ICategoryRepository
     {
-        public UserRepository(ApplicationDbContext context, ILogger logger) : base(context, logger)
+        public CategoryRepository(ApplicationDbContext context, ILogger logger) : base(context, logger)
         {
         }
 
-        public override async Task<IEnumerable<User>> AllAsync()
+        public override async Task<IEnumerable<Category>> AllAsync()
         {
             try
             {
@@ -19,30 +19,28 @@ namespace OlxInfrastructure.Data
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "{Repo} AllAsync function error", typeof(UserRepository));
-                return new List<User>();
+                _logger.LogError(ex, "{Repo} AllAsync function error", typeof(CategoryRepository));
+                return new List<Category>();
             }
         }
-        public override async Task<bool> UpdateAsync(User entity)
+        public override async Task<bool> UpdateAsync(Category entity)
         {
             try
             {
-                var existingUser = await dbSet.Where(x => x.Id == entity.Id)
+                var existingCategoty = await dbSet.Where(x => x.Id == entity.Id)
                                                     .FirstOrDefaultAsync();
 
-                if (existingUser == null)
+                if (existingCategoty == null)
                     return await AddAsync(entity);
 
-                existingUser.FirstName = entity.FirstName;
-                existingUser.LastName = entity.LastName;
-                existingUser.Email = entity.Email;
-                existingUser.PhoneNumber = entity.PhoneNumber;
+                existingCategoty.Name = entity.Name;
+
 
                 return true;
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "{Repo} Upsert function error", typeof(UserRepository));
+                _logger.LogError(ex, "{Repo} Upsert function error", typeof(CategoryRepository));
                 return false;
             }
         }
@@ -62,7 +60,7 @@ namespace OlxInfrastructure.Data
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "{Repo} Delete function error", typeof(UserRepository));
+                _logger.LogError(ex, "{Repo} Delete function error", typeof(CategoryRepository));
                 return false;
             }
         }

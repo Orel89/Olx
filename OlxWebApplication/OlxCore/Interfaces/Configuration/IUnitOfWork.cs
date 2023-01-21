@@ -4,7 +4,7 @@ namespace OlxCore.Interfaces.Configuration
 {
     public interface IUnitOfWork : IDisposable
     {
-        IUserRepository User { get; }
+        ICategoryRepository CategoryRepository { get; }
 
         Task<bool> SaveChangesAsync();
 

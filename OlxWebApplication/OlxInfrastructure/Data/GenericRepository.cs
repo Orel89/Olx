@@ -35,6 +35,12 @@ namespace OlxInfrastructure.Data
             return true;
         }
 
+        public virtual async Task<bool> AddRangeAsync(IEnumerable<T> entity)
+        {
+            await dbSet.AddRangeAsync(entity);
+            return true;
+        }
+
         public virtual async Task<bool> DeleteAsync(Guid id)
         {
             throw new NotImplementedException();
@@ -45,10 +51,6 @@ namespace OlxInfrastructure.Data
             throw new NotImplementedException();
         }
 
-        public virtual Task<bool> InsertAsync(T entity)
-        {
-            throw new NotImplementedException();
-        }
         public virtual async Task<IEnumerable<T>> FindAsync(Expression<Func<T, bool>> predicate)
         {
             return await dbSet.Where(predicate).ToListAsync();
