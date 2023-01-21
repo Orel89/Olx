@@ -36,53 +36,37 @@ namespace OlxWebApplication.Controllers
         {
             if (ModelState.IsValid)
             {
-                //ExecutionResult<SignUpQueryResult> apiResponse = new();
+                ExecutionResult<SignUpQueryResult> apiResponse = new();
 
-                //ControllerContext.HttpContext.Session.SetString("Name", user.UserName);
+                ControllerContext.HttpContext.Session.SetString("Name", user.UserName);
 
-                //var userDTO = _mapper.Map<SignUpUserModel, UserDTO>(user);
+                var userDTO = _mapper.Map<SignUpUserModel, UserDTO>(user);
 
-                //var queryUrl = "https://localhost:48758/authentication/createuser";
+                var queryUrl = "http://localhost:5220/authentication/registration";
 
-                //using (var client = new HttpClient())
-                //{
-
-                //    var request = new HttpRequestMessage(HttpMethod.Post, queryUrl);
-
-                //    var json = JsonConvert.SerializeObject(user);
-
-                //    if (user is IEnumerable<KeyValuePair<string, string>> body)
-                //    {
-                //        request.Content = new FormUrlEncodedContent(body);
-                //    }
-                //    else
-                //    {
-                //        request.Content = new StringContent(json, Encoding.UTF8, "application/json");
-                //    }
-
-                //    var response = await client.SendAsync(request);
-
-                //    if (response.IsSuccessStatusCode)
-                //    {
-                //        var result = response.Content.ReadAsStringAsync().Result;
-
-                //        apiResponse = JsonConvert.DeserializeObject<ExecutionResult<SignUpQueryResult>>(result);
-                //        return View();
-                //    }
-                //    else
-                //    {
-                //        throw new Exception("Failed to get Data from API");
-                //    }
-                //}
-                var data = new List<WeatherModel>();
                 using (var client = new HttpClient())
                 {
-                    var result = await client.GetAsync("https://localhost:44369/weatherforecast");
-                    if (result.IsSuccessStatusCode)
+
+                    var request = new HttpRequestMessage(HttpMethod.Post, queryUrl);
+
+                    var json = JsonConvert.SerializeObject(user);
+
+                    if (user is IEnumerable<KeyValuePair<string, string>> body)
                     {
-                        var model = await result.Content.ReadAsStringAsync();
-                        data = JsonConvert.DeserializeObject<List<WeatherModel>>(model);
-                        return View(data);
+                        request.Content = new FormUrlEncodedContent(body);
+                    }
+                    else
+                    {
+                        request.Content = new StringContent(json, Encoding.UTF8, "application/json");
+                    }
+
+                    var response = await client.SendAsync(request);
+
+                    if (response.IsSuccessStatusCode)
+                    {
+                        var result = response.Content.ReadAsStringAsync().Result;
+
+                        apiResponse = JsonConvert.DeserializeObject<ExecutionResult<SignUpQueryResult>>(result);
                     }
                     else
                     {

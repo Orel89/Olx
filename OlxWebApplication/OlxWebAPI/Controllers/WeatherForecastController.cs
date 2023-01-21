@@ -18,7 +18,7 @@ namespace OlxWebAPI.Controllers
             _logger = logger;
         }
 
-        [HttpGet]
+        [HttpGet(Name = "GetWeatherForecast")]
         public IEnumerable<WeatherForecast> Get()
         {
             var rng = new Random();

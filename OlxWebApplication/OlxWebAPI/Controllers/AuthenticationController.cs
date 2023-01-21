@@ -3,17 +3,17 @@ using OlxCore.Entities.DTOModels;
 
 namespace OlxWebAPI.Controllers
 {
-    public class AuthenticationController : Controller
+    [ApiController]
+    [Route("[controller]")]
+    public class AuthenticationController : ControllerBase
     {
-        public IActionResult Index()
+        [HttpPost("registration")]
+        //[Authorize]
+        public async Task<ActionResult> RegisterUser([FromBody] UserDTO signUpQuery)
         {
-            return View();
-        }
-        [HttpPost("createuser")]
-        public IActionResult CreateUser([FromBody] UserDTO request)
-        {
-            var user = request;
-            return View();
+            var result = signUpQuery;
+
+            return Ok(result);
         }
     }
 }
