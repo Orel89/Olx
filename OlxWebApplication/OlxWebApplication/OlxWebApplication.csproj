@@ -26,6 +26,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\OlxInfrastructure\OlxInfrastructure.csproj" />
+    <ProjectReference Include="..\OlxServices\OlxServices.csproj" />
     <ProjectReference Include="..\OlxShared\OlxShared.csproj" />
     <ProjectReference Include="..\OlxWebAPI\OlxWebAPI.csproj" />
   </ItemGroup>

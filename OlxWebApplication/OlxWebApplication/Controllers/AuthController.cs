@@ -1,9 +1,11 @@
 ﻿using AutoMapper;
 using LS.Helpers.Hosting.API;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using NuGet.Common;
 using OlxCore.Entities.DTOModels;
+using OlxCore.Interfaces.Services;
 using OlxWebAPI.Queries;
 using OlxWebApplication.Models;
 using OlxWebApplication.Models.User;
@@ -15,12 +17,16 @@ namespace OlxWebApplication.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private readonly IMapper _mapper;
+        private readonly IRestService _restService;
+
         public AuthController(
             ILogger<HomeController> logger,
-            IMapper mapper)
+            IMapper mapper,
+            IRestService restService)
         {
             _logger = logger;
             _mapper = mapper;
+            _restService = restService;
         }
         public IActionResult Login()
         {
@@ -36,43 +42,36 @@ namespace OlxWebApplication.Controllers
         {
             if (ModelState.IsValid)
             {
-                ExecutionResult<string> apiResponse = new();
-
-                ControllerContext.HttpContext.Session.SetString("Name", user.UserName);
+                ExecutionResult<string> apiResponse;
 
                 var userDTO = _mapper.Map<SignUpUserModel, UserDTO>(user);
 
                 var queryUrl = "http://localhost:5220/authentication/registration";
 
-                using (var client = new HttpClient())
+                try
                 {
+                    var query = $"{Constants.API.HOST_URL}/authentication/registration";
 
-                    var request = new HttpRequestMessage(HttpMethod.Post, queryUrl);
+                    var response = await _restService.RequestAsync<ExecutionResult<string>>(HttpMethod.Post, query, userDTO);
 
-                    var json = JsonConvert.SerializeObject(user);
-
-                    if (user is IEnumerable<KeyValuePair<string, string>> body)
+                    if (response.Success)
                     {
-                        request.Content = new FormUrlEncodedContent(body);
-                    }
-                    else
-                    {
-                        request.Content = new StringContent(json, Encoding.UTF8, "application/json");
-                    }
+                        apiResponse = new ExecutionResult<string>(response.Value);
 
-                    var response = await client.SendAsync(request);
-
-                    if (response.IsSuccessStatusCode)
-                    {
-                        var result = response.Content.ReadAsStringAsync().Result;
-
-                        apiResponse = JsonConvert.DeserializeObject<ExecutionResult<string>>(result);
+                        ControllerContext.HttpContext.Session.SetString("Name", user.UserName);
+                        ControllerContext.HttpContext.Session.SetString("NameId", apiResponse.Value);
                     }
                     else
                     {
                         throw new Exception("Failed to get Data from API");
                     }
                 }
+                catch (Exception ex)
+                {
+                    
+                }
+
+
             }
             return RedirectPermanent("../Home/Index");
         }

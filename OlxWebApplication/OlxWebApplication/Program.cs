@@ -5,6 +5,8 @@ using OlxInfrastructure.Identity;
 using OlxCore.Interfaces.Configuration;
 using OlxWebApplication.Helpers;
 using AutoMapper;
+using OlxCore.Interfaces.Services;
+using OlxServices.Services.RestService;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,6 +20,8 @@ builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlSer
 builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
     .AddEntityFrameworkStores<ApplicationDbContext>()
     .AddDefaultTokenProviders();
+
+builder.Services.AddSingleton<IRestService, RestService>();
 
 var autoMapper = new MapperConfiguration(item => item.AddProfile(new AutoMapperHandler()));
 IMapper mapper = autoMapper.CreateMapper();

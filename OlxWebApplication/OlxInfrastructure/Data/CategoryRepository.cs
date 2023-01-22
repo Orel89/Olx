@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using LS.Helpers.Hosting.API;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using OlxCore.Entities;
 using OlxCore.Interfaces.Repository;
@@ -63,6 +64,11 @@ namespace OlxInfrastructure.Data
                 _logger.LogError(ex, "{Repo} Delete function error", typeof(CategoryRepository));
                 return false;
             }
+        }
+
+        public Task<ExecutionResult<IEnumerable<Category>>> GetAllCategories()
+        {
+            throw new NotImplementedException();
         }
     }
 }
