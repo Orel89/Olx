@@ -7,10 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Ardalis.Result" Version="4.1.0" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Folder Include="Interfaces\Services\" />
   </ItemGroup>
 

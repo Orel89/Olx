@@ -1,9 +1,12 @@
+using AuthWebApi.Services.IdentityService;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using OlxCore.Interfaces.Configuration;
 using OlxInfrastructure.Data;
 using OlxInfrastructure.Identity;
+using OlxWebApi.Services.AuthService;
 using OlxWebAPI.Helpers;
+using OlxWebAPI.Services.AuthService;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,13 +21,15 @@ builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
     .AddDefaultTokenProviders();
 builder.Services.AddTransient<DataSeeder>();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+builder.Services.AddScoped<IAuthService, AuthService>();
+builder.Services.AddScoped<IIdentityService, IdentityService>();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-if (args.Length == 1 && args[0].ToLower() == "seed data")
+if (args.Length == 1 && args[0].ToLower() == "seeddata")
 {
     await SeedData(app);
 }

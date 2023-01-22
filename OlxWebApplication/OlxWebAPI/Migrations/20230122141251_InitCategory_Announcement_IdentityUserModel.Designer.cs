@@ -12,8 +12,8 @@ using OlxInfrastructure.Data;
 namespace OlxWebAPI.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230120173616_InitCaregoryAndIdentityUser")]
-    partial class InitCaregoryAndIdentityUser
+    [Migration("20230122141251_InitCategory_Announcement_IdentityUserModel")]
+    partial class InitCategoryAnnouncementIdentityUserModel
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -158,6 +158,17 @@ namespace OlxWebAPI.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("OlxCore.Entities.Announcement", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Announcement");
+                });
+
             modelBuilder.Entity("OlxCore.Entities.Category", b =>
                 {
                     b.Property<Guid>("Id")
@@ -170,7 +181,7 @@ namespace OlxWebAPI.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Category");
+                    b.ToTable("Categories");
                 });
 
             modelBuilder.Entity("OlxInfrastructure.Identity.ApplicationUser", b =>

@@ -4,6 +4,5 @@ namespace OlxInfrastructure.Identity
 {
     public class ApplicationUser : IdentityUser
     {
-        public string Role { get; set; } = null!;
     }
 }

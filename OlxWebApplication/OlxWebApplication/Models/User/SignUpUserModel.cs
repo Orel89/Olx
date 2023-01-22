@@ -7,8 +7,8 @@ namespace OlxWebApplication.Models.User
         [Required]
         public string UserName { get; set; } = string.Empty;
 
-        //[Required]
-        //public string EmployeeRole { get; set; } = string.Empty;
+        [Required]
+        public string UserRole { get; set; } = string.Empty;
 
         [Required]
         [EmailAddress]

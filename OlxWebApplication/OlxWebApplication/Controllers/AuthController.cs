@@ -36,7 +36,7 @@ namespace OlxWebApplication.Controllers
         {
             if (ModelState.IsValid)
             {
-                ExecutionResult<SignUpQueryResult> apiResponse = new();
+                ExecutionResult<string> apiResponse = new();
 
                 ControllerContext.HttpContext.Session.SetString("Name", user.UserName);
 
@@ -66,7 +66,7 @@ namespace OlxWebApplication.Controllers
                     {
                         var result = response.Content.ReadAsStringAsync().Result;
 
-                        apiResponse = JsonConvert.DeserializeObject<ExecutionResult<SignUpQueryResult>>(result);
+                        apiResponse = JsonConvert.DeserializeObject<ExecutionResult<string>>(result);
                     }
                     else
                     {
