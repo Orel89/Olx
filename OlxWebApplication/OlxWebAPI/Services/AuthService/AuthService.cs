@@ -1,16 +1,13 @@
 ﻿using AuthWebApi.Services.IdentityService;
 using LS.Helpers.Hosting.API;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
+using OlxCore;
 using OlxCore.Entities.DTOModels;
 using OlxCore.Enums;
 using OlxInfrastructure.Data;
 using OlxInfrastructure.Identity;
 using OlxWebApi.Services.AuthService;
-using OlxWebAPI.Queries;
 using System.Security.Claims;
-using System.Threading;
-
 
 namespace OlxWebAPI.Services.AuthService
 {

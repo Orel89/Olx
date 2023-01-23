@@ -46,8 +46,6 @@ namespace OlxWebApplication.Controllers
 
                 var userDTO = _mapper.Map<SignUpUserModel, UserDTO>(user);
 
-                var queryUrl = "http://localhost:5220/authentication/registration";
-
                 try
                 {
                     var query = $"{Constants.API.HOST_URL}/authentication/registration";
@@ -75,7 +73,5 @@ namespace OlxWebApplication.Controllers
             }
             return RedirectPermanent("../Home/Index");
         }
-
-
     }
 }

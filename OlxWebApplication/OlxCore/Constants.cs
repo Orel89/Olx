@@ -1,4 +1,4 @@
-﻿namespace OlxWebAPI
+﻿namespace OlxCore
 {
     public class Constants
     {
@@ -11,6 +11,8 @@
         public const string USER_NOT_FOUND = "user's id not found";
 
         public const string ROLE_NOT_FOUND = "role for user not found";
+
+        public const string CATEGORIES_NOT_FOUND = "list of caregories is not found";
 
         #endregion
     }
