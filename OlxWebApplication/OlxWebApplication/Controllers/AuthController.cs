@@ -68,9 +68,14 @@ namespace OlxWebApplication.Controllers
                 {
                     
                 }
-
-
             }
+
+            return RedirectPermanent("../Home/Index");
+        }
+
+        public IActionResult Logout()
+        {
+            HttpContext.Session.Clear();
             return RedirectPermanent("../Home/Index");
         }
     }

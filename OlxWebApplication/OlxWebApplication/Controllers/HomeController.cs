@@ -58,28 +58,6 @@ namespace OlxWebApplication.Controllers
 
             }
 
-            //var queryUrl = "http://localhost:5220/category/get_all_categories";
-
-            //using (var client = new HttpClient())
-            //{
-
-            //    var request = new HttpRequestMessage(HttpMethod.Get, queryUrl);
-
-            //    var response = await client.SendAsync(request);
-
-            //    if (response.IsSuccessStatusCode)
-            //    {
-            //        var result = response.Content.ReadAsStringAsync().Result;
-
-            //        categories = JsonConvert.DeserializeObject<List<Category>>(result);
-            //        ViewBag.Categories = categories;
-            //    }
-            //    else
-            //    {
-            //        throw new Exception("Failed to get Data from API");
-            //    }
-            //}
-
             return View();
         }
 
