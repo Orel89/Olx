@@ -6,7 +6,7 @@ body {
 }
 
 .color_container {
-    margin-left: -110px;
+
 }
 
 
@@ -20,3 +20,7 @@ body {
     margin-left: 50px;
 }
 
+.categories_block {
+    width: 350px;
+    position: relative;
+}

@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace OlxWebAPI.Migrations
 {
     /// <inheritdoc />
-    public partial class InitCategoryAnnouncementIdentityUserModel : Migration
+    public partial class Init : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -15,7 +15,12 @@ namespace OlxWebAPI.Migrations
                 name: "Announcement",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    UserName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Category = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Subcategory = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Data = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -71,6 +76,37 @@ namespace OlxWebAPI.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Categories", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Subcategories",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ImageSource = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Subcategories", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Images",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Photo = table.Column<byte[]>(type: "varbinary(max)", nullable: false),
+                    AnnouncementId = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Images", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Images_Announcement_AnnouncementId",
+                        column: x => x.AnnouncementId,
+                        principalTable: "Announcement",
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -179,6 +215,30 @@ namespace OlxWebAPI.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "CategorySubcategory",
+                columns: table => new
+                {
+                    CategoriesId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    SubcategoriesId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_CategorySubcategory", x => new { x.CategoriesId, x.SubcategoriesId });
+                    table.ForeignKey(
+                        name: "FK_CategorySubcategory_Categories_CategoriesId",
+                        column: x => x.CategoriesId,
+                        principalTable: "Categories",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_CategorySubcategory_Subcategories_SubcategoriesId",
+                        column: x => x.SubcategoriesId,
+                        principalTable: "Subcategories",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
                 table: "AspNetRoleClaims",
@@ -217,14 +277,21 @@ namespace OlxWebAPI.Migrations
                 column: "NormalizedUserName",
                 unique: true,
                 filter: "[NormalizedUserName] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_CategorySubcategory_SubcategoriesId",
+                table: "CategorySubcategory",
+                column: "SubcategoriesId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Images_AnnouncementId",
+                table: "Images",
+                column: "AnnouncementId");
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropTable(
-                name: "Announcement");
-
             migrationBuilder.DropTable(
                 name: "AspNetRoleClaims");
 
@@ -241,13 +308,25 @@ namespace OlxWebAPI.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "Categories");
+                name: "CategorySubcategory");
+
+            migrationBuilder.DropTable(
+                name: "Images");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
+
+            migrationBuilder.DropTable(
+                name: "Categories");
+
+            migrationBuilder.DropTable(
+                name: "Subcategories");
+
+            migrationBuilder.DropTable(
+                name: "Announcement");
         }
     }
 }

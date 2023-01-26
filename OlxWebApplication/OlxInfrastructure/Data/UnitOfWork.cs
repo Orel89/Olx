@@ -11,13 +11,18 @@ namespace OlxInfrastructure.Data
         private readonly ILogger _logger;
 
         public ICategoryRepository CategoryRepository { get; private set; }
+        public IAnnouncementRepository AnnouncementRepository { get; private set; }
+
+        public ISubcategoryRepository SubcategoryRepository { get; private set; }
 
         public UnitOfWork(ApplicationDbContext context, ILoggerFactory loggerFactory)
         {
             _context = context;
             _logger = loggerFactory.CreateLogger("logs");
 
+            AnnouncementRepository = new AnnouncementRepository(context, _logger);
             CategoryRepository = new CategoryRepository(context, _logger);
+            SubcategoryRepository = new SubcategoryRepository(context, _logger);
         }
         public async Task<bool> SaveChangesAsync()
         {

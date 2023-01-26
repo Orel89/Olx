@@ -1,17 +1,17 @@
 ﻿using OlxCore.Interfaces;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace OlxCore.Entities
 {
-    public class Category : EntityBase
+    public class Subcategory : EntityBase
     {
         public string Name { get; set; } = null!;
 
-        public ICollection<Subcategory> Subcategories { get; set; }
+        public string ImageSource { get; set; } = string.Empty;
+        public ICollection<Category> Categories { get; set; }
     }
 }

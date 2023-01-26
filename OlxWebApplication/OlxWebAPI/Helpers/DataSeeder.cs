@@ -34,6 +34,7 @@ namespace OlxWebAPI.Helpers
                 EntityGenerator.InitializeMock();
 
                 await _unitOfWork.CategoryRepository.AddRangeAsync(EntityGenerator._categories);
+                await _unitOfWork.CategoryRepository.AddRangeAsync(EntityGenerator._);
 
                 await _unitOfWork.SaveChangesAsync();
             }

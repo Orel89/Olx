@@ -33,7 +33,7 @@ builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-if (args.Length == 1 && args[0].ToLower() == "seed data")
+if (args.Length == 1 && args[0].ToLower() == "seeddata")
 {
     await SeedData(app);
 }

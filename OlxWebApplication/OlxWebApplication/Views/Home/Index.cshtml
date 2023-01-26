@@ -7,23 +7,14 @@
 
 <div class="color_container">
     <form asp-action="Index" asp-controller="Home" method="post" enctype="multipart/form-data">
-        <button type="submit" class="search_button">Search</button>
+        <button type="submit" style="margin-block-start:5px" class="search_button">Search</button>
         @foreach (CategoryViewModel u in ViewBag.Categories)
         {
-            <div style="float: left">
-                <div class="btn btn-outline-dark mx-2" onclick="selected_category('@u.Name', @u.Id)">@u.Name</div>
-
+            <div style="float: left; padding:5px;">
+                <input class="btn btn-outline-secondary" type="button" value="@u.Name" onclick="selected_category('@u.Name', '@u.Id')" />
             </div>
-            <input hidden class="categoryName" asp-for="Category.Name" >
-            <input hidden class="categoryId" asp-for="Category.Id" >
+            <input hidden class="categoryName" asp-for="Category.Name">
+            <input hidden class="categoryId" asp-for="Category.Id">
         }
-
-
     </form>
 </div>
-<script src="~/create.js" asp-append-version="true"></script>
-
-
-@section Scripts {
-    <script src="~/js/create.js"></script>
-}

@@ -6,6 +6,10 @@ namespace OlxCore.Interfaces.Configuration
     {
         ICategoryRepository CategoryRepository { get; }
 
+        ISubcategoryRepository SubcategoryRepository { get; }
+
+        IAnnouncementRepository AnnouncementRepository { get; }
+
         Task<bool> SaveChangesAsync();
 
         bool SaveChanges();
