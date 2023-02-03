@@ -17,11 +17,12 @@ namespace OlxInfrastructure.Data
         public virtual DbSet<Announcement> Announcement { get; set; }
 
         public virtual DbSet<Image> Images { get; set; }
-        
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
         }
+
     }
 }

@@ -7,6 +7,7 @@ using OlxWebApplication.Helpers;
 using AutoMapper;
 using OlxCore.Interfaces.Services;
 using OlxServices.Services.RestService;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 

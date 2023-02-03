@@ -12,6 +12,6 @@ namespace OlxCore.Entities
     {
         public string Name { get; set; } = null!;
 
-        public ICollection<Subcategory> Subcategories { get; set; }
+        public virtual ICollection<Subcategory> Subcategories { get; set; }
     }
 }

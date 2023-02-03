@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using OlxCore.Entities;
 using OlxCore.Interfaces.Repository;
+using System.Threading;
 
 namespace OlxInfrastructure.Data
 {
@@ -16,7 +17,9 @@ namespace OlxInfrastructure.Data
         {
             try
             {
-                return await dbSet.ToListAsync();
+                return await dbSet
+                    .Include(c => c.Subcategories)
+                    .ToListAsync();
             }
             catch (Exception ex)
             {

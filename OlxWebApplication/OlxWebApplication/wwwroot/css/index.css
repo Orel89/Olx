@@ -3,9 +3,12 @@
 }
 body {
     background: #ededed;
+    margin-left:0px;
+    padding: 0px;
 }
 
 .color_container {
+    margin-left: 0px;
 
 }
 

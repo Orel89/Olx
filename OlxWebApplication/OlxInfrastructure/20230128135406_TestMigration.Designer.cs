@@ -9,11 +9,11 @@ using OlxInfrastructure.Data;
 
 #nullable disable
 
-namespace OlxWebAPI.Migrations
+namespace OlxInfrastructure
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230126125051_Init")]
-    partial class Init
+    [Migration("20230128135406_TestMigration")]
+    partial class TestMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

@@ -6,7 +6,7 @@ namespace OlxWebAPI.Helpers.MockGenerator
     public class EntityGenerator
     {
         public static List<Category> _categories = new();
-        private static List<Subcategory> _subcategories = new();
+        public static List<Subcategory> _subcategories = new();
 
         public static void InitializeMock()
         {

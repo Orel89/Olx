@@ -14,16 +14,19 @@ html {
 }
 
 body {
-  margin-bottom: 60px;
+    background-color:darkred;
 }
 .backgroundColor{
     background: #000000;
 }
 body {
     background: #ededed;
+    margin-left:0px;
+    padding: 0px;
 }
 
 .color_container {
+    margin-left: 0px;
 
 }
 

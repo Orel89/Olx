@@ -12,6 +12,6 @@ namespace OlxCore.Entities
         public string Name { get; set; } = null!;
 
         public string ImageSource { get; set; } = string.Empty;
-        public ICollection<Category> Categories { get; set; }
+        public virtual ICollection<Category> Categories { get; set; }
     }
 }

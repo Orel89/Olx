@@ -8,7 +8,7 @@ using OlxInfrastructure.Data;
 
 #nullable disable
 
-namespace OlxWebAPI.Migrations
+namespace OlxInfrastructure
 {
     [DbContext(typeof(ApplicationDbContext))]
     partial class ApplicationDbContextModelSnapshot : ModelSnapshot

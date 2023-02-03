@@ -10,15 +10,17 @@ using OlxInfrastructure.Identity;
 using OlxWebApi.Services.AuthService;
 using OlxWebAPI.Helpers;
 using OlxWebAPI.Services.AuthService;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Logging.ClearProviders();
 // Add services to the container.
 
-builder.Services.AddControllers();
+builder.Services.AddControllers().AddJsonOptions(x =>
+                x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
 builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(
     builder.Configuration.GetConnectionString("DefaultConnection"),
-        x => x.MigrationsAssembly("OlxWebAPI")));
+        x => x.MigrationsAssembly("OlxInfrastructure")));
 builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
     .AddEntityFrameworkStores<ApplicationDbContext>()
     .AddDefaultTokenProviders();
@@ -33,7 +35,7 @@ builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-if (args.Length == 1 && args[0].ToLower() == "seeddata")
+if (args.Length == 1 && args[0].ToLower() == "seed data")
 {
     await SeedData(app);
 }
